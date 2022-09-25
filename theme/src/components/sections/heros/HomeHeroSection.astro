@@ -3,15 +3,18 @@ import { Icon } from 'astro-icon';
 import { Container, Button } from '@littlesticks/odyssey-theme-components';
 import settings from '../../../config/settings.js';
 import { ThemeSwitcher } from '../../theme-switcher/theme-switcher';
+import Intro from '../Intro.astro'
 ---
 
 <Container>
 	<section class="hero-section__section">
 		<div class="hero-section__text">
 			<h1>J. B. Wieser and His American Dream</h1>
-			<p>
+			<p class="no-indent">
 				A 20th Century German Immigrant to Texas
-				<br /><b>By Mark B. Wieser</b><br />
+				<br />
+				<b>By Mark B. Wieser</b><br />
+				
 				Fredericksburg, Texas <br />
 				February 1, 2014
 			</p>
@@ -22,15 +25,8 @@ import { ThemeSwitcher } from '../../theme-switcher/theme-switcher';
 						<Icon name="ic:baseline-chevron-right" />
 					</Fragment>
 				</Button>
-				<ul>
-					<li><a href="/intro/cover">Cover</a></li>
-					<li><a href="/intro">Intro</a></li>
-					<li><a href="/intro/copyright">Copyright</a></li>
-					<li><a href="/intro/family">Family Introduction</a></li>
-					<li><a href="/intro/family-tree">J.B.'s family tree</a></li>
-					<li><a href="/intro/prologue">Prologue</a></li>
-				</ul>
-				
+
+				<Intro/>
 			</div>
 		</div>
 		<div class="hero-section__image">
@@ -58,16 +54,16 @@ import { ThemeSwitcher } from '../../theme-switcher/theme-switcher';
 		justify-self: center;
 		max-width: 25rem;
 	}
-	.hero-btns__container {
+	/* .hero-btns__container {
 		display: flex;
 		align-items: center;
 		gap: 1rem;
 	}
 	.hero-btns__container {
 		margin-right: 1rem;
-	}
+	} */
 	.hero-section__image {
-		display: flex;
+		/* display: flex; */
 	}
 	.hero-section__image img {
 		width: 100%;
