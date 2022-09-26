@@ -1,0 +1,309 @@
+<!DOCTYPE html><html lang="en">
+	<head>
+		<!-- Global Metadata --><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" type="image/png" href="/favicon.png">
+<!-- Primary Meta Tags -->
+<title>Customizing Odyssey Theme</title>
+<meta name="title" content="Customizing Odyssey Theme">
+<meta name="description" content="Learn how to customize Odyssey Theme's theme styles.">
+<link rel="canonical" href="https://odyssey-theme.littlesticks.dev/theme/customizing-odyssey/">
+<!-- Generator -->
+<meta name="generator" content="Astro v1.2.5">
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://odyssey-theme.littlesticks.dev/theme/customizing-odyssey/">
+<meta property="og:title" content="Customizing Odyssey Theme">
+<meta property="og:description" content="Learn how to customize Odyssey Theme's theme styles.">
+<meta property="og:image" content="https://odyssey-theme.littlesticks.dev/social.png">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://odyssey-theme.littlesticks.dev/theme/customizing-odyssey/">
+<meta property="twitter:title" content="Customizing Odyssey Theme">
+<meta property="twitter:description" content="Learn how to customize Odyssey Theme's theme styles.">
+<meta property="twitter:image" content="https://odyssey-theme.littlesticks.dev/social.png">
+
+<!-- For Demonstration of the themes -->
+
+
+<!-- Google Analytics -->
+
+
+
+
+	<link rel="stylesheet" href="/assets/b390abd8.94f17fc7.css" />
+<link rel="stylesheet" href="/assets/5b2f12f7.e8c8ada6.css" />
+<link rel="stylesheet" href="/assets/c56fd7f5.28a559e7.css" /><script type="module">
+</script>
+<script>/** @license Copyright 2020 Google LLC (BSD-3-Clause) */
+/** Bundled JS generated from "@astrojs/lit/client-shim.js" */
+var N = Object.defineProperty;
+var i = (t, n) => () => (t && (n = t((t = 0))), n);
+var b = (t, n) => {
+	for (var a in n) N(t, a, { get: n[a], enumerable: !0 });
+};
+function s() {
+	if (d === void 0) {
+		let t = document.createElement('div');
+		(t.innerHTML = '<div><template shadowroot="open"></template></div>'),
+			(d = !!t.firstElementChild.shadowRoot);
+	}
+	return d;
+}
+var d,
+	m = i(() => {});
+var p,
+	c,
+	f,
+	u = i(() => {
+		(p = (t) => t.parentElement === null),
+			(c = (t) => t.tagName === 'TEMPLATE'),
+			(f = (t) => t.nodeType === Node.ELEMENT_NODE);
+	});
+var h,
+	E = i(() => {
+		m();
+		u();
+		h = (t) => {
+			var n;
+			if (s()) return;
+			let a = [],
+				e = t.firstElementChild;
+			for (; e !== t && e !== null; )
+				if (c(e)) a.push(e), (e = e.content);
+				else if (e.firstElementChild !== null) e = e.firstElementChild;
+				else if (f(e) && e.nextElementSibling !== null) e = e.nextElementSibling;
+				else {
+					let o;
+					for (; e !== t && e !== null; )
+						if (p(e)) {
+							o = a.pop();
+							let r = o.parentElement,
+								l = o.getAttribute('shadowroot');
+							if (((e = o), l === 'open' || l === 'closed')) {
+								let y = o.hasAttribute('shadowrootdelegatesfocus');
+								try {
+									r.attachShadow({ mode: l, delegatesFocus: y }).append(o.content);
+								} catch {}
+							} else o = void 0;
+						} else {
+							let r = e.nextElementSibling;
+							if (r != null) {
+								(e = r), o !== void 0 && o.parentElement.removeChild(o);
+								break;
+							}
+							let l =
+								(n = e.parentElement) === null || n === void 0 ? void 0 : n.nextElementSibling;
+							if (l != null) {
+								(e = l), o !== void 0 && o.parentElement.removeChild(o);
+								break;
+							}
+							(e = e.parentElement), o !== void 0 && (o.parentElement.removeChild(o), (o = void 0));
+						}
+				}
+		};
+	});
+var w = i(() => {
+	E();
+});
+var v = {};
+b(v, { hasNativeDeclarativeShadowRoots: () => s, hydrateShadowRoots: () => h });
+var S = i(() => {
+	m();
+	w();
+});
+async function g() {
+	let { hydrateShadowRoots: t } = await Promise.resolve().then(() => (S(), v));
+	window.addEventListener('DOMContentLoaded', () => t(document.body), { once: true });
+}
+var x = new DOMParser()
+	.parseFromString('<p><template shadowroot="open"></template></p>', 'text/html', {
+		includeShadowRoots: !0,
+	})
+	.querySelector('p');
+(!x || !x.shadowRoot) && g();
+</script></head>
+	<body>
+		<a href="#content" class="astro-BDIWEA2F">Skip to main content</a>
+
+
+    
+		<script type="module">
+  const bodyElement = document.querySelector('body');
+  const menuButton = document.querySelector('#menuButton')
+  const navHeader = document.querySelector('#odysseyNavHeader');
+  const menuButtonIconHam = document.querySelector('#menuButtonIconHam');
+  const menuButtonIconClose = document.querySelector('#menuButtonIconClose');
+  let scrollPosition = 0;
+
+  menuButton.addEventListener('click', toggleMenu)
+
+  function toggleMenu() {
+    menuButtonIconHam.toggleAttribute('hidden');
+    menuButtonIconClose.toggleAttribute('hidden');
+    
+    if (navHeader.hasAttribute('mobile-menu-open', true)) {
+      menuButton.title = "Open Main Menu"
+      // unlock scroll position
+      bodyElement.style.removeProperty('overflow');
+      bodyElement.style.removeProperty('position');
+      bodyElement.style.removeProperty('top');
+      bodyElement.style.removeProperty('width');
+      window.scrollTo(0, scrollPosition);
+    } else {
+      menuButton.title = "Close Main Menu"
+      // lock scroll position
+      scrollPosition = window.pageYOffset;
+      bodyElement.style.overflow = 'hidden';
+      bodyElement.style.position = 'fixed';
+      bodyElement.style.top = `-${scrollPosition}px`;
+      bodyElement.style.width = '100%';
+    }
+    
+    navHeader.toggleAttribute('mobile-menu-open');
+  }
+</script>  
+
+<header id="odysseyNavHeader" class="header--right astro-7I2N7XJP">
+  <div class="header-logo-menu__container astro-7I2N7XJP">
+  <button id="menuButton" title="Open Main Menu" class="astro-7I2N7XJP">
+    <span id="menuButtonIconHam" class="astro-7I2N7XJP">
+      <svg viewBox="0 0 24 24" width="24px" height="24px" class="astro-7I2N7XJP" astro-icon="ic:baseline-menu"><path fill="currentColor" d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+    </span>
+    <span id="menuButtonIconClose" hidden class="astro-7I2N7XJP">
+      <svg viewBox="0 0 24 24" width="24px" height="24px" class="astro-7I2N7XJP" astro-icon="ic:baseline-close"><path fill="currentColor" d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+    </span>
+  </button>
+  <a class="header-logo__link astro-7I2N7XJP" href="/">
+    <span>
+			<p class="odyssey-logo astro-XI4ZB6UL">J.B. Wieser</p>
+
+
+		</span>
+  </a>
+  </div>
+  <div class="header-nav__container astro-7I2N7XJP">
+    
+      <nav class="astro-7I2N7XJP">
+        <ul class="astro-7I2N7XJP">
+          <li class="astro-7I2N7XJP"><a href="/chapters" class="astro-7I2N7XJP">Chapters</a></li>
+        </ul>
+      </nav>
+    
+  </div>
+  <div class="header-action-item__container astro-7I2N7XJP">
+    
+  </div>
+</header>
+		<main id="content">
+			<div id="page">
+		<div class="post-header__container astro-OI5VNG6Z">
+    <ul class="post-tags__list astro-OI5VNG6Z">
+      
+    </ul>
+    <p class="post-layout__date astro-OI5VNG6Z">
+      <time class="astro-OI5VNG6Z"><em class="astro-OI5VNG6Z"></em></time>
+    </p>
+    
+  </div><div class="content__container content__container--narrow astro-4LGS25LW">
+  <article id="article" class="astro-OI5VNG6Z">
+      <h3 class="astro-OI5VNG6Z"></h3>
+      <h1 class="astro-OI5VNG6Z">Customizing Odyssey Theme</h1>
+        <p>This is one of the core features of Odyssey Theme and we’ve made it super easy to make the overall look and feel of the site your own with just a few top-level CSS custom properties. These custom properties and demo themes will be found in the <code>theme.css</code> file under <code>public/styles/</code>.</p>
+<p>First, If you are not planning on using the theme switcher found on the demo’s home page we would recommend you go to the <code>settings.js</code> file under <code>src/config/</code> and set <code>enableThemeSwitcher</code> to false. This will remove the theme switcher components and javascript from your website.</p>
+<p>It should look something like this.</p>
+<pre class="shiki github-dark" style="background-color:#0d1117;color:#c9d1d9"><div class="language-id">js</div><div class="code-container"><code><div class="line"><span style="color:#FF7B72">export</span><span style="color:#FFA657"> </span><span style="color:#FF7B72">default</span><span style="color:#FFA657"> {</span></div><div class="line"><span style="color:#FFA657">  </span><span style="color:#C9D1D9">title: </span><span style="color:#A5D6FF">`Odyssey Astro Theme | A Marketing Website Theme for Startups and Businesses`</span><span style="color:#FFA657">,</span></div><div class="line"><span style="color:#FFA657">  </span><span style="color:#C9D1D9">description: </span><span style="color:#A5D6FF">`A simple, clean, and modern theme a startup or businesses&#39; marketing website.`</span><span style="color:#FFA657">,</span></div><div class="line"><span style="color:#FFA657">  </span><span style="color:#FF7B72">...</span></div><div class="line"><span style="color:#C9D1D9">  enableThemeSwitcher: </span><span style="color:#79C0FF">false</span><span style="color:#FFA657">,</span></div><div class="line"><span style="color:#FFA657">}</span><span style="color:#C9D1D9">;</span></div></code></div></pre>
+<p>Second, if you are only going to have one theme on your site (most common) then you can delete all of the <code>[data-theme]</code> rules from the file and only keep the <code>:root</code> theme that looks something like this.</p>
+<pre class="shiki github-dark" style="background-color:#0d1117;color:#c9d1d9"><div class="language-id">css</div><div class="code-container"><code><div class="line"><span style="color:#79C0FF">:root</span><span style="color:#C9D1D9"> {</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#8B949E">/* Theme Colors */</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-primary</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">hsl</span><span style="color:#C9D1D9">(</span><span style="color:#79C0FF">0</span><span style="color:#C9D1D9">, </span><span style="color:#79C0FF">0</span><span style="color:#FF7B72">%</span><span style="color:#C9D1D9">, </span><span style="color:#79C0FF">0</span><span style="color:#FF7B72">%</span><span style="color:#C9D1D9">);</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-primary-hover</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">hsl</span><span style="color:#C9D1D9">(</span><span style="color:#79C0FF">0</span><span style="color:#C9D1D9">, </span><span style="color:#79C0FF">0</span><span style="color:#FF7B72">%</span><span style="color:#C9D1D9">, </span><span style="color:#79C0FF">20</span><span style="color:#FF7B72">%</span><span style="color:#C9D1D9">);</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-on-primary</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">#fff</span><span style="color:#C9D1D9">;</span></div><div class="line"></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-bg</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">#fff</span><span style="color:#C9D1D9">;</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-on-bg</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">#000</span><span style="color:#C9D1D9">;</span></div><div class="line"></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-surface-1</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">#f2f2f2</span><span style="color:#C9D1D9">;</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-on-surface-1</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">#000</span><span style="color:#C9D1D9">;</span></div><div class="line"></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-surface-2</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">#cce6d0</span><span style="color:#C9D1D9">;</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-on-surface-2</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">#000</span><span style="color:#C9D1D9">;</span></div><div class="line"></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#8B949E">/* Theme Shapes */</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#8B949E">/* Set this to 0 if you want all of the rounded cards, images, etc to be straight edges */</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-shape-radius</span><span style="color:#C9D1D9">: clamp(</span><span style="color:#79C0FF">1</span><span style="color:#FF7B72">rem</span><span style="color:#C9D1D9">, </span><span style="color:#79C0FF">2</span><span style="color:#FF7B72">rem</span><span style="color:#C9D1D9">, </span><span style="color:#79C0FF">3</span><span style="color:#FF7B72">rem</span><span style="color:#C9D1D9">);</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-button-border-radius</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">3</span><span style="color:#FF7B72">rem</span><span style="color:#C9D1D9">;</span></div><div class="line"></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#8B949E">/* Theme Transition */</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-transition</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">0.2</span><span style="color:#FF7B72">s</span><span style="color:#C9D1D9"> </span><span style="color:#79C0FF">ease-in-out</span><span style="color:#C9D1D9">;</span></div><div class="line"></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#8B949E">/* Theme Layout */</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--section-margin</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">3</span><span style="color:#FF7B72">rem</span><span style="color:#C9D1D9">;</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-grid-gap</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">1</span><span style="color:#FF7B72">rem</span><span style="color:#C9D1D9">;</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--container-max-width</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">1440</span><span style="color:#FF7B72">px</span><span style="color:#C9D1D9">;</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--container-max-width-narrow</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">960</span><span style="color:#FF7B72">px</span><span style="color:#C9D1D9">;</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--container-padding</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">0</span><span style="color:#C9D1D9"> </span><span style="color:#79C0FF">1</span><span style="color:#FF7B72">rem</span><span style="color:#C9D1D9">;</span></div><div class="line"></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-blog-post-header-width</span><span style="color:#C9D1D9">: </span><span style="color:#79C0FF">1200</span><span style="color:#FF7B72">px</span><span style="color:#C9D1D9">;</span></div><div class="line"></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#8B949E">/* Theme Fonts */</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-font-family-serif</span><span style="color:#C9D1D9">: </span><span style="color:#A5D6FF">&#39;Roboto Serif&#39;</span><span style="color:#C9D1D9">, </span><span style="color:#79C0FF">Georgia</span><span style="color:#C9D1D9">, Cambria, </span><span style="color:#A5D6FF">&#39;Times New Roman&#39;</span><span style="color:#C9D1D9">,</span></div><div class="line"><span style="color:#C9D1D9">		</span><span style="color:#79C0FF">Times</span><span style="color:#C9D1D9">, </span><span style="color:#79C0FF">serif</span><span style="color:#C9D1D9">;</span></div><div class="line"><span style="color:#C9D1D9">	</span><span style="color:#FFA657">--theme-font-family-sans</span><span style="color:#C9D1D9">: </span><span style="color:#A5D6FF">&#39;Lato&#39;</span><span style="color:#C9D1D9">, </span><span style="color:#79C0FF">-apple-system</span><span style="color:#C9D1D9">, BlinkMacSystemFont,</span></div><div class="line"><span style="color:#C9D1D9">		</span><span style="color:#79C0FF">sans-serif</span><span style="color:#C9D1D9">;</span></div><div class="line"><span style="color:#C9D1D9">}</span></div></code></div></pre>
+<p>Look below for a breakdown of each property.</p>
+<h2 id="colors">Colors</h2>
+<p>Here is a quick breakdown of the color properties:</p>
+<ul>
+<li><code>--theme-primary</code> - The primary color of the theme. This would be the color used for the button backgrounds.</li>
+<li><code>--theme-primary-hover</code> - The color you would like the primary color to change to when hovered over.</li>
+<li><code>--theme-on-primary</code> - The color of text layered on top of the primary color.</li>
+<li><code>--theme-bg</code> - The background color of the site</li>
+<li><code>--theme-on-bg</code> - Default body text color</li>
+<li><code>--theme-surface-1</code> - The color used for cards layered on top of the background. Think of it like a global accent color or a secondary background color.</li>
+<li><code>--theme-on-surface-1</code> - The color used for text on top of the surface-1 color</li>
+<li><code>--theme-surface-2</code> - Similar to the surface-1 color but used less often. Feel free to be more creative with this surface to make it pop on the page.</li>
+<li><code>--theme-on-surface-2</code> - The color used for text on top of the surface-2 color</li>
+</ul>
+<h2 id="shapes">Shapes</h2>
+<p>You’ll notice a lot of rounded corners on the Odyssey Theme but if you look closely when the “Dark” theme is enabled the corners are all hard edges. This is because of the global <code>--theme-shape-radius</code> property. It will determine the shape of things like cards and images.</p>
+<h2 id="transition">Transition</h2>
+<p>Sometimes you want the animations to be consistent, especially on hover effects. This is where you would use the <code>--theme-transition</code> property.</p>
+<h2 id="layouts">Layouts</h2>
+<ul>
+<li><code>--section-margin</code> - The default top and bottom margin between sections</li>
+<li><code>--theme-grid-gap</code> - The default gap between items in a grid of cards, images, etc.</li>
+<li><code>--container-max-width</code> - The default container max width for content</li>
+<li><code>--container-max-width-narrow</code> - The narrow container max width for content</li>
+<li><code>--container-padding</code> - The default gutter padding on the container</li>
+</ul>
+<h2 id="custom-fonts">Custom Font(s)</h2>
+<ol>
+<li>
+<p>Edit the Google Fonts import URL found in the <code>BaseHead.astro</code> file in the <code>src/components/head/</code> folder.</p>
+</li>
+<li>
+<p>Update your font stack with the <code>--theme-font-family-serif</code> and <code>--theme-font-family-sans</code> custom properties.</p>
+</li>
+</ol>
+    </article>
+</div>
+	</div>
+		</main>
+		<footer style="--footer-bg:var(--theme-surface-1); --footer-color:var(--theme-on-surface-1)" class="astro-NUZOTBKU">
+  <div class="content__container  astro-4LGS25LW">
+  <div class="footer-grid__container astro-NUZOTBKU">
+      <div class="footer-brand__container astro-NUZOTBKU">
+        <div class="astro-NUZOTBKU">
+          <p class="odyssey-logo astro-XI4ZB6UL">J.B. Wieser</p>
+
+
+        </div>
+        <ul class="footer-socials__list astro-NUZOTBKU">
+          
+        </ul>
+      </div>
+      <div class="astro-NUZOTBKU">
+            <p class="astro-NUZOTBKU"><strong class="astro-NUZOTBKU">Landing Pages</strong></p>
+            <ul class="footer-link__list astro-NUZOTBKU">
+              
+            </ul>
+          </div><div class="astro-NUZOTBKU">
+            <p class="astro-NUZOTBKU"><strong class="astro-NUZOTBKU">Company</strong></p>
+            <ul class="footer-link__list astro-NUZOTBKU">
+              <li class="astro-NUZOTBKU">
+                  <a href="/company/about" class="astro-NUZOTBKU">About</a>
+                </li><li class="astro-NUZOTBKU">
+                  <a href="/blog" class="astro-NUZOTBKU">Blog</a>
+                </li><li class="astro-NUZOTBKU">
+                  <a href="/company/contact" class="astro-NUZOTBKU">Contact</a>
+                </li>
+            </ul>
+          </div><div class="astro-NUZOTBKU">
+            <p class="astro-NUZOTBKU"><strong class="astro-NUZOTBKU">Theme</strong></p>
+            <ul class="footer-link__list astro-NUZOTBKU">
+              <li class="astro-NUZOTBKU">
+                  <a href="/theme/get-started" class="astro-NUZOTBKU">Get Started</a>
+                </li><li class="astro-NUZOTBKU">
+                  <a href="/theme/style-guide" class="astro-NUZOTBKU">Style Guide</a>
+                </li><li class="astro-NUZOTBKU">
+                  <a href="/theme/theme-setup" class="astro-NUZOTBKU">Theme Setup</a>
+                </li><li class="astro-NUZOTBKU">
+                  <a href="/theme/customizing-odyssey" class="astro-NUZOTBKU">Customizing Odyssey</a>
+                </li>
+            </ul>
+          </div>
+    </div><div class="footer-copyright__container astro-NUZOTBKU">
+      <p class="astro-NUZOTBKU">Copyright &copy; 2022 JB</p>
+      
+    </div>
+</div>
+</footer>
+
+
+	</body></html>
